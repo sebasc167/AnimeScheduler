@@ -1,0 +1,366 @@
+
+app.component.ts
+Angular is case-sensitive
+Suffix the class name with Component if 
+class is intended to be a component
+camelcase for property names
+metadata defined in decorator
+selector: component name is html
+template: html for a component
+
+app.module.ts
+//imports - for external modules we want available,
+//has borswer module so app can run correctly.
+it also defines where to find members that the component needs
+
+//bootstrap - startup component to display first
+//declarations: declares the appcomponent so that
+//angular can locate selector
+
+architecture
+
+index.html -> AppComponent
+
+next up
+
+index.html -> AppComponent -> FeatureList
+
+binding is about coordinating communucation between 
+the component class and template which normally 
+involves passing in data from class to template
+
+binding is seen in the template.
+
+interpolation is the most basic form of binding
+where the variables in curly braces is a 
+property in component class
+it is one way binding from class property to template 
+the  {{}} can go anywhere in the template and it iscalled
+template expression
+
+structural directive
+modifies the layout of the view by removing
+elements and children and improve 
+html with if/for loops/statements
+prefixed with *
+
+*ngIf = 'products.length'
+show if there are elements in the array
+products.length = 0 -> evals to false and element is 
+not appearing
+any[] -> array of something, not of a type in particular
+
+ES15
+for .. Of -> for each basically
+iterates over objects
+
+for .. in -> iterates over properties
+and we use the index instead
+
+Property binding again
+<img [src] = 'product.imageUrl'>
+lets us to set a property element to a template
+expression
+binding is not exclusive to strings
+it is one way from component class to html element
+
+interpolation
+<img src = {{product.imageUrl}}>
+binding is exclusive to strings so it will
+convert to a string.
+
+But how do we respond to user input??
+event binding - ()
+connect event to method in class
+<button (click) = 'toggleImage()'>
+on click you will use the toggleImage method
+
+pipes - used to transform data
+<p>The hero's birthday is {{ birthday | date:"MM/dd/yy" }} </p>
+this pipe will change the birthday to the following format for the
+date
+
+two way binding
+<input [(ngModel)] = 'listFilter'>
+[()] -> we have an angular directive
+ngModel is part of a Forms Module so if we want to expose th agnular directive
+we need to include the directive to the class.
+used to update a component as user enters information
+so if we have a component class property and we enter 
+information in the application we are able to change the 
+properties of the class.
+
+----------------------------------------------------------------------------
+
+routing
+
+routing has to do with creating routes that are activated when a button is click
+to set up routes for a component you need to access that components routing module
+ts file. you can make one from scratch or if you are asked to make a routing module 
+for the main component say yes.
+
+in the ts file you need to import the components where you might 
+want to navigate to and the RouterModule and Routes from the angular router library
+
+next up is to create a const routes array of type Routes. each element will be an 
+element in json format containing the path and the component to call when accessing
+the specific route. like this:
+
+{path:'some route with no / needed', component: the component to direct user to}, ...
+
+the wildcard route is "**" 
+the default route is "" or "/"
+whatever route in the array matches what is next to the "/" in the URL is the component
+the user is redirected to.
+
+Lastly, recall that the route ts file is a module so angular knows that routing is involved
+so you need to make class that could be empty but you need to decorate it with the 
+@NgModule decorator. it has an imports and routes array that looks at the routes array
+from before.
+
+Now in the HMTL, you need to go to an 'a' tag which is the tag for link and set up
+the angular property in the tag called: [routerLink] = "['/the route']" and that 
+route is what will be searched for in the routes array in the route module for 
+that component.
+
+Also in the HTML you need to add the  'router-outlet' tag which where the 
+component you are re-rerouting to will be loaded!
+
+By the way, I am referring to the HTML of the component that will load a particular 
+component or components!! Not the component that is getting loaded (app-root probs)
+----------------------------------------------------------------------------
+Guards
+
+guards are used to protect navigation to and from a specific component.
+you can use it to block access to a component if the user does have the correct
+access permissions or entitlements or if the link you want to access might be invalid
+in the case of an argument (like an id) in a specific route.
+
+you need to create a guard class that implements the canActivate interface
+you also need to add that class to the routing module for the component
+you lastly need to add that class in the 'canActivate' property (: ...) in an 
+element in the routes array for a particular route that needs the guard
+
+best advice is to use it for a route that might try to access an invalid id.
+
+-------------------------------------------------------
+
+Services
+We can create services and inject them into any component that needs it
+what if we have data and logic that is not attached to a specific view 
+and share it across differrent views
+
+service is a class with a focused purpose
+
+it is independent from a component, it can provided shared data or 
+logic across components and it can encapsulate external interactions.
+
+build, register and inject -> common flow of a service
+
+example of need: lets say we have hardcoded data into a component
+for display. it is not the responsibility of that component
+to hold the data, its real responsibility is to provide a view
+based on whatever data is given
+
+How does work exactly?
+Simple, we just have a class called: MyService
+and another class called MyComponent. 
+As you can see the service is just a normal class.
+
+To use the service the component can do one of two things:
+1. it can create an instance of the service in the component class
+the downside of that is that the service only exists in that class
+and we can not share the data with other classes. it is hard to test
+Note: we have to create instances all over the place so each instance
+might be used different and have different NEW data in it so no 
+sharing between objects happen.
+
+2. we can register the service with angular and we can make a single
+object that can shared. That is called a singleton class and angular 
+holds onto it
+angular provides an injector and we register the service with the injector
+the injector creates and manages the one instance of the injector
+
+if our component needs the service then we define it as a dependency
+in the constructor. the angular injector will then provide or inject
+the service into your class when an object is instantiated. That 
+is called dependency injection. 
+
+since the service object is a singleton instance managed by the 
+injector than any data or logic that service has is shared by all classes
+that use it.
+
+Analogy: 
+first approach is like using different save files for the same game.
+they all can have different things
+
+second approach is like buying the game digitally and playing it 
+on different devices. the saved file and profile attached is the same
+but the different devices you use to access the save point are different
+like having a netflix account. it is shared among different devices like
+your phone, tv, ipad.
+
+Example: DataService Method: getData
+
+dependency injection - a class receives instances of objects
+it needs called dependencies from an external sources rather
+than making thoe services itself  in the classes that need it
+
+Steps
+create service class
+define metadata with a decorator
+import that is needed
+
+similar to how we have a root component and component
+tree, we also have a root injector and injector tree
+so if we register the service with the root injector
+than you can use it anywhere. Or you could register it with
+a specific component injector. the service is only available
+for injection to that component and its children.
+
+-----------------------------------------------
+ngOnInit() - a lifecycle hook that can be used to initialize
+any data in our component and called RIGHT AFTER the constructor
+
+ngOnDestroy() - another lifecycle hook function called right before the component is destroyed
+could be used when creating a toggle to show an object or not.
+can also be used when you want to perform some operations before destruction
+of an object like unsubscribing from Observables
+
+Remember that if you want to use these lifecycle hooks you must 
+implement the OnInit and OnDestroy interfaces that have the 
+corresponding functions from above.
+
+-----------------------------------------------
+
+Retrieving Data with HTTP
+
+As we know the web browser is considered the client 
+and to get information from the server we make a get
+request and get the response back in JSON format.
+This can also be done in Angular.
+
+Reactive Extensions RxJs
+Library for composing data using observable sequences
+transform data with operators (like LINQ ops)
+Angular uses reactive extensions for working with data
+
+Synchronous - communucation is in real time and is processed
+immediately. the app requests a value and watis for value to arrive
+
+asynchromouse - the response is not immediate and things can 
+be done in the background
+
+HTTP requests are asynchronous - request and response.
+Lets see this in action with our example:
+
+1. Application wants the list of shows
+2. a get request is made and sent to the web server
+3. Notify the application when the response arrives
+4. Keep going with my life in the application
+5. some time passes and the response reaches the application
+from the server.
+6. Now the application can be processed.
+
+Angular helps you send the request but what about the notification??
+How does the app know that the data has arrived to process it???
+See below!!
+
+Observable
+- A collection of items over time
+- does not retain items like arrays
+- emitted items can be observed over time
+
+So in an array we hold values and can retrieve them whenever we want
+with observables the values are emmited from the collection immediately
+and are processed on the spot.
+the collection cannot be sorted or grabbed again like a keyboard click
+
+Key points 
+- Observables don't do much until we subscribe
+- When you subscribe the observable emits notifications
+
+Notification types:
+- next notification - when next item is emmitted and we are provided
+the item
+Example: a key press observable will emit the next notification and 
+the next character
+
+- error - provides error information
+- complete - when no more items are emitted
+
+Updated Flow of data retrieval
+
+1. Call the http get method
+2. the http get method will return an observable to 
+emit the notifications to know when the response arrives
+3. we subscribe to that observable
+4. get request is officially sent to web server
+5. code keeps going
+6. Eventually at a later time the response is returned
+7. the observable emits a next notification (method)
+8. we process the emitted response
+Note: the observable emits the entire response as one emitted item
+so if we ask for the shows the HTTP response includes the shows.
+The observable eits one single next notification with the array of 
+those shows
+
+Of course we might like the way the response is formatted so we can
+use a set of operators to tranform each emitted item with a pipe
+
+Basically when we can get the response, each item we immediately pass it through
+a pipe. we map, filter, transform data.
+
+subscribe to the observable
+pipe emitted items with operators
+
+process the notifications
+unsubscribe at the end
+--------------------------------
+Observable code: 
+const source$: Observable<number> = range(0,10);
+
+NOTE: observable variables are suffixed with $
+NOTE2: Observables emit items of a specific type so mention that
+NOTE3: the observables spits out the rang of numbers and we process it
+---------------------------------
+Observable pipe operations
+source$.pipe(
+    map(x => x * 3),
+    filter(x => x % 2 === 0)
+). subscribe(x => console.log(x));
+
+map - transforms the data according the specified
+arrow function
+filter - filters out information based on a conditional.
+
+--------------------------------
+Observable - subscribing to one
+
+with the subscribe method seen above. What is inside
+the subscribe method is what we want to do with the 
+emitted items. In the case above we will emit them
+to the screen.
+
+---------------------------------
+Calling the HTTP request method
+
+Angular has the HTTPclient "service" that 
+will make the HTTP request with a specific method
+which is the "get" method in our case which will return an observable
+
+after subscribing to the observable,
+the HTTPclient service sends a get request to the 
+web server
+
+the response goes to the service
+the observable emits the next notification which 
+provides the response.
+
+observables are lazy so they dont load anything 
+until you subscribe.
+
+ngOnDestroy() - function called right before the component is destroyed
+could be used when creating a toggle to show an object or not.
+can also be used when you want to perform some operations before destruction
+of an object like unsubscribing from Observables

@@ -1,0 +1,25 @@
+<h2>Show Details</h2>
+<br>
+<div class="card" style="width: 18rem;">
+    <div class="card-header">
+      {{show.name}}
+    </div>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item">Season On: {{show.seasonOn}}</li>
+        <li class="list-group-item">Season: {{show.season}}</li>
+        <li class="list-group-item">Year: {{show.year}}</li>
+        <li class="list-group-item">Weekday: {{show.weekday}}</li>
+        <li class="list-group-item">Episode On: {{show.episodeOn}}</li>
+        <li class="list-group-item">Episode Total: {{show.episodeTotal}}</li>
+        <li class="list-group-item">Start Date: {{show.startDate | date: "MM/dd/yy" || ""}}</li>
+        <li class="list-group-item">End Date:   {{show.endDate | date: "MM/dd/yy" || ""}}</li>
+        <li class="list-group-item">Completed: {{displayCompleted(show)}}</li>
+      </ul>
+      <div class="card-body">
+        Link: <a [href]="show.link" target="_blank">{{show.name}}</a>
+      </div>
+</div>
+<br>
+<button type="button" [routerLink]="['/show-list/'+ show.id +  '/edit']" class="btn btn-primary">
+  Edit
+</button>

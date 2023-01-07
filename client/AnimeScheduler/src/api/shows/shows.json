@@ -1,0 +1,26 @@
+[
+    {
+        "name": "First One",
+        "link": "www.first-site.com/1",
+        "season": "Fall",
+        "s": 1,
+        "year": 2022,
+        "weekday": "Monday",
+        "completed": false,
+        "episodeOn": 2,
+        "episodeTotal": 12,
+        "watchDate": "2022-12-26T21:47:45.685Z"
+    },
+    {
+        "name": "Second One",
+        "link": "www.second-site.com/2",
+        "season": "Season.Winter",
+        "s": 2,
+        "year": 2022,
+        "weekday": "Tuesday",
+        "completed": false,
+        "episodeOn": 10,
+        "episodeTotal": 24,
+        "watchDate": "2022-12-26T21:47:45.685Z"
+    }
+]

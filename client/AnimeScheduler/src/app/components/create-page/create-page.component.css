@@ -1,0 +1,16 @@
+/*
+For validation in a field
+.ng-invalid:not(form).ng-touched{
+    border: 1px solid red;
+}
+or use a custom name
+[] for an html attribute
+<div [hidden]="property.valod || .untouched"
+class="alert">
+enter a name
+<div>
+*/
+
+.field-error{
+    border: 1px solid red;
+}

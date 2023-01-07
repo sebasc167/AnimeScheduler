@@ -1,0 +1,71 @@
+Linting
+
+Helps us check and make sure
+our code is okay
+
+run
+ng lint my-app --help  ->> show help for linting a project
+
+You can generate blueprints of different angular 
+files using
+
+ng generate <blueprint> name or ng g <component i.e.> name
+
+ng g <class, service, component> name -> ng g c component-name
+
+blueprint options
+--flat -> doesnt generate a folder
+-t will template be in ts files
+-s will style be in ts file
+
+--routing - to add routing for a component generated
+
+Making custom pipes
+make a <pipename>.pipe.ts file in a shared folder
+
+import {Pipe, PipeTransform} from '@angular/core';
+@Pipe({
+    name: <some pipe name>
+})
+export class <PiepNameCustom> implements PipeTransform{
+
+    transform(value: any, args?: any) : any{
+        return null;
+    }
+}
+
+Now add it into the modules class for that component
+and add it to the declarations array
+
+As we know that the declarations array is for pipes and
+components
+the modules array is for different modules we need to use 
+in those components managed by the module
+
+Making guards
+ng g guard <guardname>
+
+Environments
+
+defined in environments/environment.ts and
+environments/environment.prod.ts
+
+building the application requires you to use one of the env files
+
+ng build -> by default and uses environment.ts
+ng build --prod -> uses the environment.prod.ts file
+
+you can see the default command by going into the 
+package.json file under scripts
+
+Whenever you save you are doing a live serve
+
+--------------------------------------
+Testing
+
+ng test -> executes all .spec.ts files
+
+it generate a page using Karma and jasmine
+
+jasmine - for testing js code
+karma - for browser testing

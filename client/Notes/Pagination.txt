@@ -1,0 +1,13 @@
+Pagination
+When we want to display a certain number of items
+or rows from a table on a page. Mainly used if we have a 
+lot of pages and want to view them in groups of X items.
+total number of items being paged - total row number
+number of items per page is key
+
+
+There is normally a dropdown with page sizes for us to choose
+options for that is in the "pageSizeOptions" element.
+
+We can do this with the material angular io paginator here:
+https://material.angular.io/components/paginator/api

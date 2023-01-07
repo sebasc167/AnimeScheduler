@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "FXS91yqdGhwt+uLTyWiBdv+YlJXvrSNLDWUOpaX8jC8=",
+  "Source": "AnimeScheduler.API",
+  "BasePath": "_content/AnimeScheduler.API",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}

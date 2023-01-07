@@ -1,0 +1,128 @@
+template dirven forms
+uses the components template
+unit test against the dom, not the form directly
+
+reactive forms
+uses the components template
+but in ts you would create the form model 
+you can unit test against the form model
+validation against form model
+
+Basics
+we need the formsmodule
+
+The  go into bootstrap and look for forms
+and you can find forms for a calendar, input for
+user selection and many other forms of input
+
+form tag is the way to go but might render differently in other browsers so we 
+need to use the ngform directive.
+
+ngform has different properties like submitted equal to true or false and 
+observers array but one of the key ones right now is the value which holds
+our input from the form but how do we let angular know of the values submitted??
+
+we use NgModel on every field we want angualrt to know about and helps build the 
+value object
+
+Steps:
+go to the form tag and add #form="ngForm" so we let angualr know we have an 
+angular form
+
+go to the input tag of each field and add: ngModel
+
+go the very bottom of the html and type in {{ form.value | json }} 
+here we are using interpolation to see the value object
+and piping into Json format
+the key name is dependent on the "name" attribute in the html so something like this:
+<input ... name="somefield"> ... 
+
+result of {{ form.value | json }} in browser is: { "somefield": "" }
+
+The end result of this is that there will now be an object ready for pickup
+this works if values are set by default
+NOTE: REMEMBER that the NAME attribute is important in this case!!!
+
+Normally we use one way binding to display from the component's state to the UI
+but we want to normally use two way binding where we go from UI to component and use
+the UI to change the state of the component.
+For this we need to use a directive called NgModel
+
+[] is property binding
+() is event binding like (click) =somefunction()
+
+what happens if we go back or cancel? we dont wanna to modify the state directly!!
+
+we can create a new object of the same type and assign it the original value of the state
+using the spread operator.
+
+if we decide to submit then the state of the original object will change and be assigned
+to the new state. WE ARE NOT MODIFYING but assigning
+newobject : type = { ...this.originalObject}; //shallow copy
+
+The form works with the original copy of the data
+
+----------------------------------------------------------
+Form Validation
+used with attributes
+required -> forced issue
+pattern - for regex expressions
+minlength, maxlength - max/min len of string
+max,min - max or min number value
+
+------------------------------------------
+CSS for validations
+
+ng-untouched
+
+ng-touched - when we click off. replaced when not in focus
+
+ng-pristine -> untouched field in UI
+
+ng-dirty - when we modify
+
+ng-invalid - if input is not valid like if we have a blank for a required field
+could be used ot make sure regex expressions are met in field with pattern
+
+you can add a tempalte reference varaibles like this:
+#propertyTest="ngModel"
+
+you can customize the css in the css file and then add a hidden div in the css
+that will appear according to the value of propertyTest.untouched or propertyTest.valid
+
+But this happens for all fields so the error appear when the field is invalid right off the
+bat so let's make this work only when we submit
+
+----------------------------
+when you press somewhere else or get out of focus a blur event triggered
+
+---------------------------
+
+Posting with Observables
+When posting a form we send form data to a server and wait for a response
+which is asynchronous
+
+we can have a postForm method in the service but it must return an
+observable so that we can then subscribe to it in the class we inject the service 
+to
+we subscribe in a postForm method in the target class
+
+---------------------------
+
+We can also display options with a form using the data service instead
+of hardcoded options
+using an observable of stype string[]. we subscribe and grab those values and display
+
+to do this:
+1. Go into the component with the injected service and create a variable/ observable
+of type string[].
+2. Go into the service and create a method called getObservableValues() : Observable<string[]>
+3. in the method return of([values comma separated]) NOTE: of returns an observable of 
+type whatever is provided
+4. go into the target class and assign the observable there to the obserable we made in the 
+service class but calling the method we just made in the data service
+5. go into the html and where it says option (eliminate the otehr option tags) use
+asn ngFor loop and say ngFor="let option of <name of obserable in target> | async".
+Here we pipe so that we wait until the observable has the data we want to display
+
+LTS - Long term support for a version of node

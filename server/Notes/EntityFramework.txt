@@ -1,0 +1,102 @@
+EF is Microsoft's data access platform for .NET developers
+EntityFramework Core 6 is dependent to .NET 6
+
+What is EF core?
+Consists of APIs for data access.
+ 
+ORM - Object relational mapper whuch helps work with data 
+and turn it into objects that you can use instead of messy
+queries.
+
+Normally C# solutions have a startup project which is always
+marked in black. If it is not black then right click 
+on the project and make it a startup one.
+
+There are tow nuget packages to install:
+1. Microsoft.EntityFrameworkCore.SqlServer
+2. Microsoft.EntityFrameworkCore
+
+The second one just has enough to help you get by but the 
+first one even has a data provider to play with the data
+which would be sql server. Install the first one.
+
+The first one has a dependency on EF core relational
+nuget package which has a dependency on the EF core nuget package
+which also has a dependency on .NET6
+
+Now we have EF6 core in out project.
+
+
+-------------------------------------------
+DbContext - provides the EF core db connectivity and tracks 
+changes to projects. DbContext is like the database
+
+DBSets - exposed by the DbContext and are used to wrap around
+classes that EF Core will work with. The DBSets are properties
+of the class that inherits from DbContext. DBSet is like the table.
+Exposing DBSet properties in the context class we can query the 
+tables the DBSets represent.
+DBSet names == table names in the DB
+That is what is inferred ^^
+
+Now we need to let it know about the provder and the connection
+string
+
+We need to add the method for the DbContext called
+OnConfiguring which will take in a DBContextOptionsBuilder
+object which lets us adjust th options for the DbContext
+
+options builder has a method called UseSQLServer()
+
+EF core is able to read the model that the DbContext
+is describing based on the classes pointing to the sets
+
+--------------------------------------
+The first time the EF core instantiates the context we made
+at runtime, the ONConfiguring method will run and it will know 
+to use SQLServer.
+
+------------------------------------------
+LINQ - Language integrated query and lets you write 
+normal c# code to perform db operations
+
+ToList() -> LINQ method that forces query to execute 
+and return a list of objects.
+
+You can now run the project at the top and it will create
+the DB for you. Open up the SQL Server Object Explorer on the left
+to see that happen. (found in view)
+
+Now we have a get method but we need to add data to the db 
+with an add... method.
+It will use the context's Add() method to add the object
+call the  SaveChanges() method to see the changes reflected
+
+Query workflow
+- we enter a LINQ method in c#
+- ef core reads the model and works with provider to
+transform statement into SQL query
+- query is sent to DB
+- results are retrieved
+- results are converted to the apporpiate object 
+- adds trscking to DbContext Instance
+
+------------------------------
+
+LINQ Methods
+
+ToList -> returns a list of rows (objects)
+Where(lambda exp) -> get rows according to a condition
+Select(lambda exp) -> get specific rows which uses the class
+definition
+OrderBy() -> orders results by a specific column
+OrderByDescending()
+ThenBy() -> then orders the results by another column
+
+Aggregation Methods
+First() - first row
+FirstOrDefault()
+
+Single() - grabs first element but ASSERTS only one row
+is returned
+Last() - returns last element

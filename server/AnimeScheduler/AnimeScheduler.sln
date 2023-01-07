@@ -1,0 +1,41 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33205.214
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AnimeScheduler.Core", "AnimeScheduler.Core\AnimeScheduler.Core.csproj", "{C1FD45EF-CFE9-4952-A90B-7106B8111538}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AnimeScheduler.Data.SQL", "AnimeScheduler.Data.SQL\AnimeScheduler.Data.SQL.csproj", "{483DB6C6-5871-40CD-BAF0-5FAAC794DE32}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AnimeScheduler.API", "AnimeScheduler.API\AnimeScheduler.API.csproj", "{26E8656F-F362-4981-8A29-C5C56828F9CB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4D3A24AE-398A-4696-A719-7A2A50FBCD00}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4D3A24AE-398A-4696-A719-7A2A50FBCD00}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4D3A24AE-398A-4696-A719-7A2A50FBCD00}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4D3A24AE-398A-4696-A719-7A2A50FBCD00}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C1FD45EF-CFE9-4952-A90B-7106B8111538}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C1FD45EF-CFE9-4952-A90B-7106B8111538}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C1FD45EF-CFE9-4952-A90B-7106B8111538}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C1FD45EF-CFE9-4952-A90B-7106B8111538}.Release|Any CPU.Build.0 = Release|Any CPU
+		{483DB6C6-5871-40CD-BAF0-5FAAC794DE32}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{483DB6C6-5871-40CD-BAF0-5FAAC794DE32}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{483DB6C6-5871-40CD-BAF0-5FAAC794DE32}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{483DB6C6-5871-40CD-BAF0-5FAAC794DE32}.Release|Any CPU.Build.0 = Release|Any CPU
+		{26E8656F-F362-4981-8A29-C5C56828F9CB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{26E8656F-F362-4981-8A29-C5C56828F9CB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{26E8656F-F362-4981-8A29-C5C56828F9CB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{26E8656F-F362-4981-8A29-C5C56828F9CB}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {84F16441-7CFD-41E1-9926-282EC30BCC2E}
+	EndGlobalSection
+EndGlobal

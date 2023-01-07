@@ -1,0 +1,37 @@
+To make a web api project you just go into 
+VIsual studio and right click on the solution
+and add a new project.
+The project is one that ends in web api 
+
+If you click on the project and go into the 
+CSPROJ file you will see a package reference for something called Swashbuckle
+which letsd us explore the API without having a front end (we have angular but
+that's not relevant)
+It has a tool called Swagger to test APIs.
+
+Now run the API project on the top
+
+It will now open up Swagger and the title will be the name of the 
+project.
+You will see the UI pop up on localhost 5066 which is our case
+
+Now we need to add a controller to set up the endpoints and coverage
+for the types of HTTP requests
+
+To do this we just right click on the controllers folder in the API project and
+add "Controller"
+
+In that new window we go to the API tab and press on the last option that
+is an API controller with actions using the Entity Framework
+
+Then you select the model class, endpoints class and data context
+
+Now if you go back to swagger you will notice that the Shows end point is ready
+and you can do all the opertaions you want.
+Also notice that in the controller the methodssave changes ASYNCHRONOUSLY
+as well as other operations. That is because we do not want to block the UI while we
+wait for the response
+
+Now we just need to add services for the DB Context with SqlServer in program or startup.cs
+we need to configure services in program class using dependency injection so we will 
+inject a service (controller, swaggerGen, ...)

@@ -1,0 +1,17 @@
+TO connect the API to the UI:
+
+1. We need the link to the API locally.
+You can find this by going into the API project, running it
+and seeing what is the port in which SWAGGER ui is rendered.
+In our case that is localhost:5066
+
+2. Now go into the UI side and create a folder in the 
+src folder called environments.
+
+3.Make two files: environment.ts
+and environment.prod.ts
+
+4.Now go into the API side and set the connection
+string to the Database
+localhost, Database="AnimeScheduler"
+
